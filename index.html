@@ -17,15 +17,15 @@
                 <img src="img/logo.png" class="app__logo">
             </div>
             <div class="app__body">
-                <button class="app__btn">
+                <button class="app__btn" @click="goToOuestions">
                     <i class="fa fa-play-circle-o" aria-hidden="true"></i>
                     <div class="app__btn-text">Start</div>
                 </button>
-                <button class="app__btn">
+                <button class="app__btn" v-on:click="goToAchievements">
                     <i class="fa fa-trophy" aria-hidden="true"></i>
                     <div class="app__btn-text">Achievements</div>
                 </button>
-                <button class="app__btn">
+                <button class="app__btn" @click="goToSocial">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <div class="app__btn-text">Author</div>
                 </button>
@@ -97,7 +97,7 @@
                     <i class="fa fa-github" aria-hidden="true"></i>
                     <div class="app__btn-text">GitHub</div>
                 </a>
-                <button class="app__btn btn__back">
+                <button class="app__btn btn__back" @click="goToMain">
                     <i class="fa fa-reply" aria-hidden="true"></i>
                 </button>
             </div>
@@ -128,40 +128,6 @@
 
     <script src="js/vue.js"></script>
     <script src="js/const.js"></script>
-    <script>
-        let app = new Vue({
-            el: '.main',
-            data: {
-                showMain: true,
-                showSocial: false,
-                showAchievements: false,
-                showQuestions: false,
-                showResults: false,
-                number: 0,
-                score: {
-                    'zerg': 0,
-                    'primal': 0,
-                    'protoss': 0,
-                    'taldarim': 0,
-                    'terran': 0,
-                },
-                totalGame: localStorage.getItem('sc2TotalGame') ? JSON.parse(localStorage.getItem
-                ('sc2TotalGame')) : {
-                    'zerg': 0,
-                    'primal': 0,
-                    'protoss': 0,
-                    'taldarim': 0,
-                    'terran': 0,
-                    'infested': 0,
-                    'hybrid': 0,
-                },
-                totalGames: localStorage.getItem('sc2TotalGame') ? localStorage.getItem
-                ('sc2TotalGame') : 0,
-                questions: questions,
-                results: results,
-                resultRace: 'infested',
-            },
-        })
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
