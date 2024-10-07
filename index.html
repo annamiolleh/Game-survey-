@@ -45,33 +45,36 @@
                     <div class="app__body-top">
                         <div class="app__card">
                             <div class="app__card-text">Score</div>
-                            <div class="app__card-count">0</div>
+                            <div class="app__card-count">{{ totalScore }}</div>
                         </div>
                         <div class="app__card">
                             <div class="app__card-text">Opened races</div>
-                            <div class="app__card-count">0</div>
+                            <div class="app__card-count">{{ openRaces }}</div>
                         </div>
                         <div class="app__card">
                             <div class="app__card-text">Amount of games</div>
-                            <div class="app__card-count">0</div>
+                            <div class="app__card-count">{{ totalGames }}</div>
                         </div>
                         <div class="app__card">
                             <div class="app__card-text">Favorite race</div>
-                            <div class="app__card-count">0</div>
+                            <div class="app__card-count">{{ favoriteRace }}</div>
                         </div>
                     </div>
                     <div class="app__body-middle">
-                        <div class="app__result">
+                        <div class="app__result" 
+                        v-for="(race, k) in results"
+                        v-show="showResultRace[k]"
+                        @click="goToResult(k)">
                             <div class="app__result-score">
                                 <i class="fa fa-star" aria-hidden="true"></i>
-                                <div class="app__result-count">150</div>
+                                <div class="app__result-count">{{ race.points }}</div>
                             </div>
-                            <div class="app__result-name">Zerg</div>
-                            <div class="app__result-amount">5</div>
+                            <div class="app__result-name">{{ race.name }}</div>
+                            <div class="app__result-amount">{{ totalGame[k] }}</div>
                         </div>
                     </div>
                     <div class="app__body-bottom">
-                        <button class="app__btn btn__back btn__achievement">
+                        <button class="app__btn btn__back btn__achievement" @click="goToMain">
                             <i class="fa fa-reply" aria-hidden="true"></i>
                         </button>
                     </div>

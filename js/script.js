@@ -107,7 +107,7 @@ let app = new Vue({
             else if (this.score.protoss > this.score.zerg && 
                 this.score.protoss > this.score.terran &&
                 this.score.taldarim < 5 &&
-                Math.abs(this.scrore.protoss - this.score.zerg) > 3) {
+                Math.abs(this.score.protoss - this.score.zerg) > 3) {
                     this.goToResult('protoss');
                     this.totalGame.protoss++;
                 }
@@ -136,6 +136,43 @@ let app = new Vue({
             }
             
             localStorage.setItem('sc2TotalGame', JSON.stringify(this.totalGame));
+        }
+    },
+    computed: {
+        totalScore() {
+            let score=0
+            for(let i in this.totalGame) {
+                score+=(this.totalGame[i]*results[i].points)
+            }
+            return score
+        },
+        openRaces() {
+            let count=0
+            for(let i in this.totalGame) {
+                if(this.totalGame[i]>0) count++
+            }
+            return count
+        },
+        favoriteRace() {
+            let max='zerg'
+            for(let i in this.totalGame) {
+                if(this.totalGame[i]>this.totalGame[max]) {
+                    max=i
+                }
+            }
+            return results[max].name
+        },
+        showResultRace() {
+            return {
+                'zerg': this.totalGame.zerg > 0 ? true : false,
+                'primal': this.totalGame.primal > 0 ? true : false,
+                'protoss': this.totalGame.protoss > 0 ? true : false,
+                'taldarim': this.totalGame.taldarim > 0 ? true : false,
+                'terran': this.totalGame.terran > 0 ? true : false,
+                'infested': this.totalGame.infested > 0 ? true : false,
+                'hybrid': this.totalGame.hybrid > 0 ? true : false,
+
+            }
         }
     }
 })
